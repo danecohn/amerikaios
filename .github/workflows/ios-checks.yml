@@ -46,6 +46,7 @@ jobs:
           sleep 15
           xcrun simctl spawn "$DEVICE_ID" launchctl list | awk '$3 ~ /social.amerika.ios/ && $1 ~ /^[0-9]+$/ {alive=1} END {exit !alive}'
           xcrun simctl io "$DEVICE_ID" screenshot AmerikaSocial-iPhone-preview.png
+          swift scripts/check-simulator-screen.swift AmerikaSocial-iPhone-preview.png
       - name: Upload simulator build
         if: always()
         uses: actions/upload-artifact@v7
