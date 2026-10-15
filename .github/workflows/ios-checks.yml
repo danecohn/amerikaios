@@ -34,6 +34,10 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild -workspace ios/AmerikaSocial.xcworkspace -scheme AmerikaSocial -configuration Release -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build > xcode-build.log 2>&1 || { tail -n 100 xcode-build.log; exit 1; }
+          plutil -create xml1 simulator-entitlements.plist
+          plutil -insert application-identifier -string SIMULATOR0.social.amerika.ios simulator-entitlements.plist
+          plutil -insert keychain-access-groups -json '["SIMULATOR0.social.amerika.ios"]' simulator-entitlements.plist
+          codesign --force --sign - --entitlements simulator-entitlements.plist build/Build/Products/Release-iphonesimulator/AmerikaSocial.app
           ditto -c -k --keepParent build/Build/Products/Release-iphonesimulator/AmerikaSocial.app AmerikaSocial-simulator.zip
       - name: Launch native app and capture iPhone preview
         run: |
