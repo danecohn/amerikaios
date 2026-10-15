@@ -69,3 +69,5 @@ Public policies: https://www.amerika.social/privacy and https://www.amerika.soci
 Amerika Social project code is licensed under the GNU General Public License, version 3 only (GPL-3.0-only). See [LICENSE](LICENSE). Third-party components retain their own licenses and notices.
 
 The simulator review workflow can reuse a compiled native app when its lockfile and app configuration match, bundle the current interface, and check that the sign-in/feed screen is visible. It refuses reuse when native dependencies or app configuration change.
+
+Refresh: pull down from the top of a feed, thread, profile, friends list, inbox or alerts. The Me page and feature pages support the same gesture. Settings, Developer hub, Communities, Dating and Discover also have a header refresh button. Refresh preserves unsaved form text.
