@@ -1,5 +1,14 @@
 # Amerika Social for iPhone
 
+<!-- artemis-publisher:start -->
+<img src="brand/artemis/artemis-wordmark.svg" alt="Artemis Softworks LLC" width="340">
+
+**A product of Artemis Softworks LLC.** Founded by **Demetria Althea Cohn**.
+
+Companion software for macOS, thoughtfully available for Windows and Linux. See the [Artemis identity and design system](brand/artemis/BRAND.md). Platform availability varies by product and release.
+<!-- artemis-publisher:end -->
+
+
 Native iPhone interface for the existing Amerika Social service. React Native, Expo SDK 57, flat red/white/black controls. The social app is not a website wrapper; a hosted verification view is used only for Cloudflare CAPTCHA.
 
 ## Features

@@ -54,5 +54,6 @@
     "check:jsx": "node scripts/native-jsx.mjs"
   },
   "private": true,
-  "packageManager": "pnpm@11.25.0"
+  "packageManager": "pnpm@11.25.0",
+  "author": "Artemis Softworks LLC"
 }
