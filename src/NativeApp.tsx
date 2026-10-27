@@ -4,6 +4,7 @@ import {
   Alert,
   AppState,
   FlatList,
+  Image,
   KeyboardAvoidingView,
   Linking,
   Modal,
@@ -296,7 +297,7 @@ function AppContent() {
     <RefreshControl
       refreshing={busy}
       onRefresh={() => void load()}
-      tintColor={colors.red}
+      tintColor={colors.tint}
     />
   );
   const peopleView = (
@@ -339,10 +340,10 @@ function AppContent() {
     header = (
       <>
         <View style={s.hero}>
-          <Text style={s.title}>Why Can’t We{"\n"}Be Friends?</Text>
-          <Text style={s.text}>Make friends. Grow stronger together.</Text>
+          <Text style={s.title}>Vigil Social</Text>
+          <Text style={s.text}>Posts from your friends and the agents you follow.</Text>
           <Text style={[s.muted, { color: colors.white }]}>
-            Free speech. Newest first. No paid boosts.
+            Newest first. No paid boosts.
           </Text>
         </View>
         <View style={s.tabs}>
@@ -467,7 +468,7 @@ function AppContent() {
               <View
                 style={{
                   backgroundColor:
-                    item.sender === me?.id ? colors.red : colors.card,
+                    item.sender === me?.id ? colors.sent : colors.card,
                   padding: 14,
                   borderRadius: 14,
                   maxWidth: "85%",
@@ -576,7 +577,7 @@ function AppContent() {
     content = (
         <ScrollView alwaysBounceVertical refreshControl={rc} contentContainerStyle={s.content}>
         <Person actor={me} />
-        {(["developers","communities","dating","explore","account"] as Feature[]).map(name=><Button key={name} secondary title={{developers:"Developer hub",communities:"Amerika Communities",dating:"Amerika Dating",explore:"Discover & hashtags",account:"Account settings",moderation:"Moderation"}[name]} onPress={()=>showFeature(name)}/>)}
+        {(["developers","communities","dating","explore","account"] as Feature[]).map(name=><Button key={name} secondary title={{developers:"Developer hub",communities:"Vigil Communities",dating:"Vigil Dating",explore:"Discover & hashtags",account:"Account settings",moderation:"Moderation"}[name]} onPress={()=>showFeature(name)}/>)}
         {(me.admin||me.moderator)&&<Button secondary title="Moderation & administration" onPress={()=>showFeature("moderation")}/>}
         <Text style={s.text}>{me.bio}</Text>
         <Text style={s.muted}>
@@ -584,7 +585,7 @@ function AppContent() {
             ? "Plus · 833 characters"
             : "Standard · 300 characters, 3 original posts per hour"}
         </Text>
-        <Button title="Amerika Social Plus" onPress={() => setPlus(true)} />
+        <Button title="Vigil Social Plus" onPress={() => setPlus(true)} />
         <Button
           secondary
           title="My profile"
@@ -627,14 +628,14 @@ function AppContent() {
     return (
       <SafeAreaView style={s.screen}>
         <View style={s.empty}>
-          <Text style={s.title}>Amerika Social</Text>
+          <Text style={s.title}>Vigil Social</Text>
           {error ? (
             <>
               <Text style={s.error}>{error}</Text>
               <Button title="Retry" onPress={() => void bootstrap()} />
             </>
           ) : (
-            <ActivityIndicator color={colors.red} />
+            <ActivityIndicator color={colors.tint} />
           )}
         </View>
       </SafeAreaView>
@@ -648,7 +649,7 @@ function AppContent() {
         : route?.kind === "bots"
           ? "Your bots"
           : {
-              home: "Amerika",
+              home: "Vigil Social",
               friends: "Friends",
               alerts: "Notifications",
               inbox: "Messages",
@@ -656,7 +657,7 @@ function AppContent() {
             }[tab];
   return (
     <SafeAreaView style={s.screen} edges={["top", "left", "right"]}>
-      <StatusBar style="dark" />
+      <StatusBar style="auto" />
       <View style={[s.header, s.row]}>
         {route ? (
           <Icon
@@ -669,9 +670,11 @@ function AppContent() {
             }}
           />
         ) : (
-          <View style={[s.logo, { width: 32, height: 32 }]}>
-            <Text style={[s.label, { fontSize: 25 }]}>A</Text>
-          </View>
+          <Image
+            accessibilityLabel="Vigil Social"
+            source={require("../brand/vigiltech/vigiltech-mark-128.png")}
+            style={[s.logo, { width: 32, height: 32 }]}
+          />
         )}
         <Text numberOfLines={1} style={[s.title, { fontSize: 22, flex: 1 }]}>
           {title}
@@ -725,7 +728,7 @@ function AppContent() {
                       )[i]
                     }
                     size={23}
-                    color={tab === name ? colors.red : colors.muted}
+                    color={tab === name ? colors.tint : colors.muted}
                   />
                   <Text
                     style={{

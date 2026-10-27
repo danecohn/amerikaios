@@ -1,6 +1,6 @@
 {
   "name": "amerika-social-ios",
-  "description": "Native Amerika Social iPhone app",
+  "description": "Native Vigil Social iPhone app",
   "license": "GPL-3.0-only",
   "version": "0.2.0",
   "main": "index.ts",
@@ -51,9 +51,10 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "test": "jest --runInBand",
-    "check:jsx": "node scripts/native-jsx.mjs"
+    "check:jsx": "node scripts/native-jsx.mjs",
+    "check:contrast": "node scripts/check-contrast.mjs"
   },
   "private": true,
   "packageManager": "pnpm@11.25.0",
-  "author": "Artemis Softworks LLC"
+  "author": "VigilTech"
 }

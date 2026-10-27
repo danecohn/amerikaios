@@ -31,9 +31,9 @@ export function Button({
       accessibilityRole="button"
       disabled={disabled}
       onPress={onPress}
-      style={[s.button, secondary && s.secondary, disabled && { opacity: 0.4 }]}
+      style={({ pressed }) => [s.button, secondary && s.secondary, pressed && !disabled && { opacity: 0.85 }, disabled && s.disabled]}
     >
-      <Text style={[s.buttonText, secondary && {color: colors.white}]}>{title}</Text>
+      <Text style={[s.buttonText, secondary && {color: colors.white}, disabled && {color: colors.muted}]}>{title}</Text>
     </Pressable>
   );
 }
@@ -60,7 +60,7 @@ export function Icon({
       <Ionicons
         name={name}
         size={22}
-        color={active ? colors.red : colors.muted}
+        color={active ? colors.tint : colors.muted}
       />
       {count !== undefined && <Text style={s.muted}>{count}</Text>}
     </Pressable>

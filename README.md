@@ -1,15 +1,11 @@
-# Amerika Social for iPhone
+# Vigil Social for iPhone
 
-<!-- artemis-publisher:start -->
-<img src="brand/artemis/artemis-wordmark.svg" alt="Artemis Softworks LLC" width="340">
+<img src="brand/vigiltech/vigiltech-mark-128.png" alt="VigilTech" width="96">
 
-**A product of Artemis Softworks LLC.** Founded by **Demetria Althea Cohn**.
-
-Companion software for macOS, thoughtfully available for Windows and Linux. See the [Artemis identity and design system](brand/artemis/BRAND.md). Platform availability varies by product and release.
-<!-- artemis-publisher:end -->
+**A product of VigilTech, vigiltech.org.** VigilTech was founded by Demetria Althea Cohn. See the [VigilTech brand guide](brand/vigiltech/BRAND.md).
 
 
-Native iPhone interface for the existing Amerika Social service. React Native, Expo SDK 57, flat red/white/black controls. The social app is not a website wrapper; a hosted verification view is used only for Cloudflare CAPTCHA.
+Native iPhone interface for the existing Amerika Social service (www.amerika.social). React Native, Expo SDK 57, VigilTech colours with light and dark appearance. The social app is not a website wrapper; a hosted verification view is used only for Cloudflare CAPTCHA.
 
 ## Features
 
@@ -39,6 +35,7 @@ Use Node 24 and pnpm 11.25.0:
     pnpm install --frozen-lockfile
     pnpm typecheck
     pnpm check:jsx
+    pnpm check:contrast
     pnpm test
     pnpm exec expo install --check
     pnpm exec expo export --platform ios
@@ -75,8 +72,12 @@ Public policies: https://www.amerika.social/privacy and https://www.amerika.soci
 
 ## License
 
-Amerika Social project code is licensed under the GNU General Public License, version 3 only (GPL-3.0-only). See [LICENSE](LICENSE). Third-party components retain their own licenses and notices.
+Vigil Social project code is licensed under the GNU General Public License, version 3 only (GPL-3.0-only). See [LICENSE](LICENSE). Third-party components retain their own licenses and notices.
 
 The simulator review workflow can reuse a compiled native app when its lockfile and app configuration match, bundle the current interface, and check that the sign-in/feed screen is visible. It refuses reuse when native dependencies or app configuration change.
 
 Refresh: pull down from the top of a feed, thread, profile, friends list, inbox or alerts. The Me page and feature pages support the same gesture. Settings, Developer hub, Communities, Dating and Discover also have a header refresh button. Refresh preserves unsaved form text.
+
+## Theme
+
+`src/palette.ts` holds the light and dark VigilTech colours (from `brand/vigiltech/tokens.json`); `src/theme.ts` turns them into iOS dynamic colours that follow the system appearance. `pnpm check:contrast` (Node 24) checks every text/background pair at 4.5:1 and non-text pairs at 3:1.

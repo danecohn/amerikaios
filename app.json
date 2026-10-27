@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Amerika Social",
+    "name": "Vigil Social",
     "slug": "amerika-social",
     "version": "0.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "amerikasocial",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "automatic",
     "ios": {
       "bundleIdentifier": "social.amerika.ios",
       "supportsTablet": false,
@@ -22,7 +22,7 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Choose photos or videos to share on Amerika Social.",
+          "photosPermission": "Choose photos or videos to share on Vigil Social.",
           "cameraPermission": false,
           "microphonePermission": false
         }
@@ -38,12 +38,21 @@
       [
         "expo-media-library",
         {
-          "savePhotosPermission": "Save branded Amerika Social post images to your photo library.",
+          "savePhotosPermission": "Save branded Vigil Social post images to your photo library.",
           "photosPermission": "Choose media for your posts and Dating profile.",
           "preventAutomaticLimitedAccessAlert": true
         }
       ],
       "expo-notifications"
-    ]
+    ],
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f6f1f4",
+      "dark": {
+        "image": "./assets/splash-icon-dark.png",
+        "backgroundColor": "#120a14"
+      }
+    }
   }
 }

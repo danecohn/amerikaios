@@ -37,8 +37,8 @@ jobs:
       - run: pnpm typecheck && pnpm check:jsx && pnpm test
       - name: Embed the current interface into the compatible native build
         run: |
-          pnpm exec expo export:embed --entry-file index.ts --platform ios --dev false --bytecode --bundle-output simulator-build/AmerikaSocial.app/main.jsbundle --assets-dest simulator-build/AmerikaSocial.app
-          codesign --force --sign - --preserve-metadata=entitlements,flags,identifier simulator-build/AmerikaSocial.app
+          pnpm exec expo export:embed --entry-file index.ts --platform ios --dev false --bytecode --bundle-output simulator-build/VigilSocial.app/main.jsbundle --assets-dest simulator-build/VigilSocial.app
+          codesign --force --sign - --preserve-metadata=entitlements,flags,identifier simulator-build/VigilSocial.app
       - name: Boot iPhone and capture the running app
         timeout-minutes: 9
         run: |
@@ -53,12 +53,12 @@ jobs:
           done
           if kill -0 "$boot_wait_pid" 2>/dev/null; then kill "$boot_wait_pid"; cat boot.log; exit 1; fi
           wait "$boot_wait_pid"
-          xcrun simctl install "$DEVICE_ID" simulator-build/AmerikaSocial.app
+          xcrun simctl install "$DEVICE_ID" simulator-build/VigilSocial.app
           xcrun simctl launch --terminate-running-process "$DEVICE_ID" social.amerika.ios
           sleep 15
           xcrun simctl io "$DEVICE_ID" screenshot simulator-review.png
           swift scripts/check-simulator-screen.swift simulator-review.png
-          ditto -c -k --sequesterRsrc --keepParent simulator-build/AmerikaSocial.app AmerikaSocial-current-simulator.zip
+          ditto -c -k --sequesterRsrc --keepParent simulator-build/VigilSocial.app AmerikaSocial-current-simulator.zip
       - name: Upload review and diagnostics
         if: always()
         uses: actions/upload-artifact@v7

@@ -43,7 +43,7 @@ export function Toggle({
       flex: 1
     }]}>{label}</Text><Switch accessibilityLabel={label} value={value} onValueChange={onChange} trackColor={{
       true: colors.red,
-      false: colors.border
+      false: colors.outline
     }} /></View>;
 }
 export function Select({
@@ -139,7 +139,7 @@ export function Status({
   error?: string;
   loading?: boolean;
 }) {
-  return <>{loading && <ActivityIndicator color={colors.red} />}{!!error && <Text style={s.error}>{error}</Text>}</>;
+  return <>{loading && <ActivityIndicator color={colors.tint} />}{!!error && <Text style={s.error}>{error}</Text>}</>;
 }
 export type FormField = {
   key: string;
@@ -267,8 +267,8 @@ export function Page({
   return <PageRefreshContext.Provider value={tasks}><SafeAreaView style={s.screen}><View style={[s.header, s.spread]}><Text style={[s.title, {
         fontSize: 22,
         flex: 1
-      }]}>{title}</Text><Icon name="refresh" label="Refresh page" onPress={() => void refresh()} /><Icon name="close" label="Close" onPress={onClose} /></View><ScrollView testID="feature-page-scroll" alwaysBounceVertical refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void refresh()} tintColor={colors.red} />} keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}>{children}<Text accessibilityRole="text" style={[s.muted,{fontSize:11,textAlign:"center",paddingVertical:16}]}>A product of Artemis Softworks LLC</Text></ScrollView></SafeAreaView></PageRefreshContext.Provider>;
+      }]}>{title}</Text><Icon name="refresh" label="Refresh page" onPress={() => void refresh()} /><Icon name="close" label="Close" onPress={onClose} /></View><ScrollView testID="feature-page-scroll" alwaysBounceVertical refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void refresh()} tintColor={colors.red} />} keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}>{children}<Text accessibilityRole="text" style={[s.muted,{fontSize:11,textAlign:"center",paddingVertical:16}]}>A product of VigilTech, vigiltech.org</Text></ScrollView></SafeAreaView></PageRefreshContext.Provider>;
 }
 
-export const SOFTWARE_PUBLISHER = "Artemis Softworks LLC";
+export const SOFTWARE_PUBLISHER = "VigilTech";
 export const SOFTWARE_FOUNDER = "Demetria Althea Cohn";
