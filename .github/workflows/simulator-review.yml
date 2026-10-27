@@ -11,7 +11,7 @@ permissions:
 jobs:
   review:
     runs-on: macos-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     env:
       CI: '1'
       GH_TOKEN: ${{ github.token }}
@@ -40,14 +40,14 @@ jobs:
           pnpm exec expo export:embed --entry-file index.ts --platform ios --dev false --bytecode --bundle-output simulator-build/VigilSocial.app/main.jsbundle --assets-dest simulator-build/VigilSocial.app
           codesign --force --sign - --preserve-metadata=entitlements,flags,identifier simulator-build/VigilSocial.app
       - name: Boot iPhone and capture the running app
-        timeout-minutes: 9
+        timeout-minutes: 15
         run: |
           xcrun simctl list devices available -j > simulators.json
           DEVICE_ID=$(node -e 'const all=Object.entries(require("./simulators.json").devices).filter(([key,rows])=>key.includes("iOS")&&rows.some(d=>d.isAvailable&&d.name.startsWith("iPhone"))).sort(([a],[b])=>b.localeCompare(a,"en",{numeric:true}));process.stdout.write(all[0][1].find(d=>d.isAvailable&&d.name.startsWith("iPhone")).udid);')
           xcrun simctl boot "$DEVICE_ID"
           xcrun simctl bootstatus "$DEVICE_ID" -b > boot.log 2>&1 &
           boot_wait_pid=$!
-          for attempt in {1..90}; do
+          for attempt in {1..180}; do
             if ! kill -0 "$boot_wait_pid" 2>/dev/null; then break; fi
             sleep 4
           done
